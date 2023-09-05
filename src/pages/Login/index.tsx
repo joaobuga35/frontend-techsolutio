@@ -60,7 +60,7 @@ const Login = () => {
         <ButtonDefault type="submit" colorBtn={"buttonGreen"} width={"100%"}>
           Logar
         </ButtonDefault>
-        <p>Crie sua conta para saborear muitas delícias e matar sua fome!</p>
+        <p>Crie sua conta para conhecer os melhores produtos!</p>
         <Link className="redirectedBtn" to={"/register"}>
           Cadastrar
         </Link>

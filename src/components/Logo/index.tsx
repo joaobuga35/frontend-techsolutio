@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <LogoTitle>
       <h1>
-        All<span>Prodcucts</span>
+        All<span>Products</span>
       </h1>
     </LogoTitle>
   );

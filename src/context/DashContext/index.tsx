@@ -3,6 +3,9 @@ import { createContext, useCallback, useEffect, useState } from "react";
 import { IDashContextType, IProduct } from "./interfaces/interfaces";
 import { iContext } from "../UserContext/interfaces/interfaces";
 import api from "../../services/api";
+import { productData } from "../../schemas/product.schema";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DashContext = createContext<IDashContextType>({} as IDashContextType);
 const DashProvider = ({ children }: iContext) => {
@@ -28,7 +31,26 @@ const DashProvider = ({ children }: iContext) => {
 
   useEffect(() => {
     getProducts();
-  }, [token]);
+  }, [token, modal]);
+
+  const registerProduct = async (productDatas: productData) => {
+    try {
+      const response = await api.post("/products", productDatas, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Cadastrado com sucesso!", {
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setModal(false);
+    } catch (error) {}
+  };
   return (
     <DashContext.Provider
       value={{
@@ -43,6 +65,7 @@ const DashProvider = ({ children }: iContext) => {
         setModal,
         setProducts,
         setSearchList,
+        registerProduct,
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { productData } from "../../../schemas/product.schema";
 
 interface IDashContextType {
   token: string | null;
@@ -12,6 +13,7 @@ interface IDashContextType {
   setModal: Dispatch<SetStateAction<boolean>>;
   filterProducts: IProduct[];
   setFilterProducts: Dispatch<SetStateAction<IProduct[]>>;
+  registerProduct: (productData: productData) => void;
 }
 
 interface IProduct {

@@ -32,7 +32,8 @@ const ModalContainer = styled.div`
   animation: ${slideDown} 1s ease-in-out;
 
   @media (min-width: 768px) {
-    width: 740px;
+    width: 450px;
+    height: auto;
   }
 `;
 
@@ -60,4 +61,13 @@ const TitleModal = styled.header`
   }
 `;
 
-export { ModalWrapper, ModalContainer, TitleModal };
+const FormModal = styled.form`
+  width: 100%;
+  padding: 20px;
+  height: auto;
+  box-shadow: 0px 0px 30px -20px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border: 2px solid var(--gray-0);
+`;
+
+export { ModalWrapper, ModalContainer, TitleModal, FormModal };

@@ -10,7 +10,8 @@ const productSchema = z.object({
     .string()
     .max(50, "O fornecedor deve ter no máximo 50 caracteres")
     .nonempty("O fornecedor é obrigatário"),
-  price: z.number().min(0, "O preço deve ser maior que zero"),
+  image: z.string().nonempty("A imagem é obrigatária"),
+  price: z.string().min(0, "O preço deve ser maior que zero"),
 });
 
 type productData = z.infer<typeof productSchema>;

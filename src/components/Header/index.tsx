@@ -13,7 +13,8 @@ const HeaderDash = () => {
   const { remove } = useContext(UserContext);
   const isWide = useMediaQuery({ minWidth: 768 });
   const [show, setShow] = useState(false);
-  const { setSearchList, products, setInput, input } = useContext(DashContext);
+  const { setSearchList, products, setInput, input, modal, setModal } =
+    useContext(DashContext);
 
   const searchFilter = (input: string, products: IProduct[]) => {
     setSearchList(
@@ -51,7 +52,9 @@ const HeaderDash = () => {
                     X
                   </span>
                 </DivInput>
-                <AiOutlinePlus className="icons" />
+                <span onClick={() => setModal(true)}>
+                  <AiOutlinePlus className="icons" />
+                </span>
                 <Link to={"/"} onClick={() => remove()}>
                   <ExitToAppIcon className="icons" />
                 </Link>
@@ -66,7 +69,9 @@ const HeaderDash = () => {
                     onClick={() => setShow(!show)}
                     className="icons"
                   />
-                  <AiOutlinePlus className="icons" />
+                  <span onClick={() => setModal(true)}>
+                    <AiOutlinePlus className="icons" />
+                  </span>
                   <Link to={"/"} onClick={() => remove()}>
                     <ExitToAppIcon className="icons" />
                   </Link>

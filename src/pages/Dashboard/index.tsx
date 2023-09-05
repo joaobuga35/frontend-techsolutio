@@ -3,12 +3,14 @@ import HeaderDash from "../../components/Header";
 import { DivTitleDashboard, List, MainDashboard } from "./styles";
 import { DashContext } from "../../context/DashContext";
 import Card from "../../components/Card";
+import Modal from "../../components/Modal";
 
 const Dashboard = () => {
   const { products, searchList, modal } = useContext(DashContext);
 
   return (
     <>
+      {modal && <Modal />}
       <MainDashboard>
         <HeaderDash />
         <DivTitleDashboard>

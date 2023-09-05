@@ -14,6 +14,7 @@ interface IDashContextType {
   filterProducts: IProduct[];
   setFilterProducts: Dispatch<SetStateAction<IProduct[]>>;
   registerProduct: (productData: productData) => void;
+  deleteProduct: (id: number) => void;
 }
 
 interface IProduct {

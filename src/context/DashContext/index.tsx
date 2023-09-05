@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-empty */
 import { createContext, useCallback, useEffect, useState } from "react";
 import { IDashContextType, IProduct } from "./interfaces/interfaces";
@@ -51,6 +52,25 @@ const DashProvider = ({ children }: iContext) => {
       setModal(false);
     } catch (error) {}
   };
+
+  const deleteProduct = async (id: number) => {
+    try {
+      const response = await api.delete(`/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Deletado com sucesso!", {
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      getProducts();
+    } catch (error) {}
+  };
   return (
     <DashContext.Provider
       value={{
@@ -66,6 +86,7 @@ const DashProvider = ({ children }: iContext) => {
         setProducts,
         setSearchList,
         registerProduct,
+        deleteProduct,
       }}
     >
       {children}

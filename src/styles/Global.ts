@@ -61,5 +61,6 @@ export default createGlobalStyle`
   100% {
     opacity: 1;
   }
+
 }
 `;

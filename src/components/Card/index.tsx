@@ -6,7 +6,8 @@ import { LiCard, DivImage, DivInfos } from "./styles";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Card = ({ product }: any) => {
-  const { setModal, products, setFilterProducts } = useContext(DashContext);
+  const { products, setFilterProducts, deleteProduct } =
+    useContext(DashContext);
 
   const filterAll = (id: string) => {
     const oneProduct = products.filter((elem: any) => elem.id === id);
@@ -20,16 +21,18 @@ const Card = ({ product }: any) => {
         </DivImage>
         <DivInfos>
           <h2>{product.name}</h2>
+          <span>{product.supplier}</span>
+          <p>R$ {product.price}</p>
           <ButtonDefault
             id={product.id}
             onClick={() => {
-              filterAll(product.id), setModal(true);
+              filterAll(product.id), deleteProduct(product.id);
             }}
             colorBtn={"buttonGreen"}
             width={"106px"}
           >
             {" "}
-            Ver detalhes
+            Excluir produto
           </ButtonDefault>
         </DivInfos>
       </LiCard>

@@ -13,6 +13,7 @@ const MainDashboard = styled.main`
   @media (min-width: 1440px) {
     max-width: 1260px;
     margin: 0 auto;
+    overflow-y: hidden;
   }
 `;
 
@@ -36,6 +37,7 @@ const List = styled.ul`
   gap: 20px;
   width: 400px;
   overflow-x: auto;
+  margin-bottom: 250px;
 
   @media (min-width: 500px) {
     width: 100%;

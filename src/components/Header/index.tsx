@@ -22,7 +22,11 @@ const HeaderDash = () => {
         if (!input) {
           return elem;
         } else {
-          return elem.name.toLowerCase().includes(input.toLowerCase());
+          return (
+            elem.name.toLowerCase().includes(input.toLowerCase()) ||
+            elem.supplier.toLowerCase().includes(input.toLowerCase()) ||
+            elem.price.toString().includes(input.toLowerCase())
+          );
         }
       })
     );
@@ -42,6 +46,7 @@ const HeaderDash = () => {
                         setInput(e.target.value),
                         searchFilter(e.target.value, products);
                     }}
+                    placeholder={"Pesquisar produtos"}
                     value={input}
                   />
                   <span
@@ -86,7 +91,7 @@ const HeaderDash = () => {
                   }}
                   value={input}
                   show={show}
-                  placeholder="Digite sua pesquisa..."
+                  placeholder={"Pesquisar produtos"}
                 />
                 <span
                   onClick={() => {

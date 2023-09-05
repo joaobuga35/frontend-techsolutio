@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const LiCard = styled.li`
   min-width: 250px;
   max-width: 250px;
-  height: 271px;
+  height: 325px;
   border: 2px solid var(--gray-100);
   border-radius: 4px;
   background-color: var(--color-background);

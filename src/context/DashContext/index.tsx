@@ -15,12 +15,12 @@ const DashProvider = ({ children }: iContext) => {
 
   const getProducts = useCallback(async () => {
     try {
-      const response = await api.get<IProduct[]>("products", {
+      const response = await api.get<IProduct[]>("/products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      setProducts(response.data);
+      setProducts(response.data.content);
     } catch (error) {
       console.error("Error fetching restaurants:", error);
     }
@@ -28,7 +28,7 @@ const DashProvider = ({ children }: iContext) => {
 
   useEffect(() => {
     getProducts();
-  }, [getProducts, products]);
+  }, [token]);
   return (
     <DashContext.Provider
       value={{

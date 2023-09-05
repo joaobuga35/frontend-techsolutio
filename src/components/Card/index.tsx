@@ -1,26 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useContext } from "react";
+import { DashContext } from "../../context/DashContext";
 import ButtonDefault from "../../styles/button";
 import { LiCard, DivImage, DivInfos } from "./styles";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Card = ({ products }: any) => {
-  //   const { setModal, restaurants, setFilterRestaurants } =
-  //     useContext(DashContext);
+const Card = ({ product }: any) => {
+  const { setModal, products, setFilterProducts } = useContext(DashContext);
 
-  //   const filterAll = (id: string) => {
-  //     const oneRestaurant = restaurants.filter((elem) => elem.id === id);
-  //     setFilterRestaurants(oneRestaurant);
-  //   };
+  const filterAll = (id: string) => {
+    const oneProduct = products.filter((elem: any) => elem.id === id);
+    setFilterProducts(oneProduct);
+  };
   return (
     <>
-      <LiCard key={products.id} id={products.id}>
+      <LiCard key={product.id} id={product.id}>
         <DivImage>
-          <img src={products.image} alt="image" />
+          <img src={product.image} alt="image" />
         </DivImage>
         <DivInfos>
-          <h2>{products.name}</h2>
+          <h2>{product.name}</h2>
           <ButtonDefault
-            id={products.id}
-            onClick={() => {}}
+            id={product.id}
+            onClick={() => {
+              filterAll(product.id), setModal(true);
+            }}
             colorBtn={"buttonGreen"}
             width={"106px"}
           >

@@ -6,31 +6,26 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AiOutlineSearch, AiOutlinePlus } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
+import { DashContext } from "../../context/DashContext";
+import { IProduct } from "../../context/DashContext/interfaces/interfaces";
 
 const HeaderDash = () => {
   const { remove } = useContext(UserContext);
   const isWide = useMediaQuery({ minWidth: 768 });
   const [show, setShow] = useState(false);
+  const { setSearchList, products, setInput, input } = useContext(DashContext);
 
-  //   const searchFilter = (input: string, restaurants: IRestaurant[]) => {
-  //     setSearchList(
-  //       restaurants.filter((elem: IRestaurant) => {
-  //         if (!input) {
-  //           return elem;
-  //         } else {
-  //           return (
-  //             elem.name.toLowerCase().includes(input.toLowerCase()) ||
-  //             elem.foods.some((food: IFood) =>
-  //               food.name.toLowerCase().includes(input.toLowerCase())
-  //             ) ||
-  //             elem.foods.some((food: IFood) =>
-  //               food.description.toLowerCase().includes(input.toLowerCase())
-  //             )
-  //           );
-  //         }
-  //       })
-  //     );
-  //   };
+  const searchFilter = (input: string, products: IProduct[]) => {
+    setSearchList(
+      products.filter((elem: IProduct) => {
+        if (!input) {
+          return elem;
+        } else {
+          return elem.name.toLowerCase().includes(input.toLowerCase());
+        }
+      })
+    );
+  };
   return (
     <DivHeader>
       <>
@@ -41,10 +36,20 @@ const HeaderDash = () => {
               <div className="divIcons">
                 <DivInput>
                   <SearchInput
-                    onChange={() => {}}
-                    placeholder="Digite sua pesquisa..."
+                    onChange={(e) => {
+                      e.preventDefault(),
+                        setInput(e.target.value),
+                        searchFilter(e.target.value, products);
+                    }}
+                    value={input}
                   />
-                  <span onClick={() => {}}>X</span>
+                  <span
+                    onClick={() => {
+                      setSearchList([]), setInput("");
+                    }}
+                  >
+                    X
+                  </span>
                 </DivInput>
                 <AiOutlinePlus className="icons" />
                 <Link to={"/"} onClick={() => remove()}>
@@ -69,11 +74,22 @@ const HeaderDash = () => {
               </HeaderMain>
               <DivInput show={show}>
                 <SearchInput
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    e.preventDefault(),
+                      setInput(e.target.value),
+                      searchFilter(e.target.value, products);
+                  }}
+                  value={input}
                   show={show}
                   placeholder="Digite sua pesquisa..."
                 />
-                <span onClick={() => {}}>X</span>
+                <span
+                  onClick={() => {
+                    setSearchList([]), setInput("");
+                  }}
+                >
+                  X
+                </span>
               </DivInput>
             </>
           )}
